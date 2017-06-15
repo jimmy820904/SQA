@@ -9,17 +9,6 @@ import org.junit.After;
 
 public class AccountSystemTest
 {
-    /*
-    @Before
-    public void before() throws Exception
-    {
-    }
-
-    @After
-    public void after() throws Exception
-    {
-    }
-    */
     @Test
     public void checkAccountTest() throws Exception
     {
@@ -39,5 +28,24 @@ public class AccountSystemTest
         assertEquals("correct",a.checkAccount(s6));
     }
 
+    @Test
+    public void checkPasswordTest() throws Exception
+    {
+        AccountSystem a = new AccountSystem();
+        String s1 = "1111";
+        String s2 = "1a1a1a1a1a1a1a1aA";
+        String s3  = "11111111";
+        String s4 = "aaaaaaaa";
+        String s5 = "AAAAAAAA";
+        String s6 = "1A1a1a1a_";
+        String s7 = "1A1a1a1a";
 
+        assertEquals("密碼不符合規定長度",a.checkPassword(s1));
+        assertEquals("密碼不符合規定長度",a.checkPassword(s2));
+        assertEquals("密碼需包含大小寫英文字母及數字，不能使用符號",a.checkPassword(s3));
+        assertEquals("密碼需包含大小寫英文字母及數字，不能使用符號",a.checkPassword(s4));
+        assertEquals("密碼需包含大小寫英文字母及數字，不能使用符號",a.checkPassword(s5));
+        assertEquals("密碼需包含大小寫英文字母及數字，不能使用符號",a.checkPassword(s6));
+        assertEquals("correct",a.checkPassword(s7));
+    }
 } 
