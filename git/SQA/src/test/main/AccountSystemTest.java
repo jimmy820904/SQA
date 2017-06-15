@@ -79,4 +79,15 @@ public class AccountSystemTest
         assertEquals("您的密碼第一個字為A，最後一個字為3", a.forgetPassword("jimmy666"));
         assertEquals("此帳號不存在", a.forgetPassword("jimmy6789"));
     }
+
+    @Test
+    public void changePasswordTest()
+    {
+        AccountSystem a = new AccountSystem();
+        a.signUp("jimmy666","ABCDEf123");
+        assertEquals("原密碼輸入錯誤", a.changePassword("jimmy666", "123","Qazwsx123"));
+        assertEquals(a.checkPassword("123456789"), a.changePassword("jimmy666","ABCDEf123","123456789"));
+        assertEquals("修改成功", a.changePassword("jimmy666", "ABCDEf123","Qazwsx123"));
+        assertEquals("Qazwsx123", a.database.get("jimmy666"));
+    }
 } 

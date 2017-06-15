@@ -8,14 +8,15 @@ import java.util.HashMap;
 public class AccountSystem
 {
     public HashMap<String, String> database = new HashMap<String, String>();
+    public String currentUser;
 
     public String signUp(String account, String password)
     {
         if( database.containsKey(account) )
             return "此帳號已存在";
-        if(checkAccount(account) != "correct" )
+        if(!checkAccount(account).equals("correct"))
             return checkAccount(account);
-        if(checkPassword(password) != "correct" )
+        if(!checkPassword(password).equals("correct"))
             return checkPassword(password);
 
         assert database.containsKey(account) == false: "account exists";
@@ -134,5 +135,19 @@ public class AccountSystem
             return "您的密碼第一個字為" + password.charAt(0) + "，最後一個字為" + password.charAt(password.length()-1);
         }
         return "此帳號不存在";
+    }
+
+    public String changePassword(String account, String oldPassword, String newPassword)
+    {
+        if(database.get(account).equals(oldPassword))
+        {
+            if(checkPassword(newPassword).equals("correct"))
+            {
+                database.replace(account, oldPassword, newPassword);
+                return "修改成功";
+            }
+            return checkPassword(newPassword);
+        }
+        return "原密碼輸入錯誤";
     }
 }
