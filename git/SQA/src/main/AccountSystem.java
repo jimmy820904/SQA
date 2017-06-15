@@ -9,7 +9,7 @@ public class AccountSystem
 {
     public HashMap<String, String> database = new HashMap<String, String>();
     public String currentUser;
-
+    public boolean login = false;
     public String signUp(String account, String password)
     {
         if( database.containsKey(account) )
@@ -37,6 +37,7 @@ public class AccountSystem
             if( database.get(account).equals(password) )
             {
                 currentUser = account;
+                login = true;
                 return "登入成功";
             }
             else
@@ -48,6 +49,7 @@ public class AccountSystem
     public void logOut()
     {
         currentUser = "";
+        login = false;
     }
 
     public String checkAccount(String account)
@@ -64,24 +66,23 @@ public class AccountSystem
             boolean digit = false;
             for(int i = 0 ; i < account.length() ; i++ )
             {
-                if( (letter && digit) == true)
-                {
-                    return "correct";
-                }
-
                 char temp = account.charAt(i);
 
-                if(Character.isLetter(temp))
+                if(Character.isLetter(temp) && (letter == false))
                 {
                     letter = true;
                     continue;
                 }
 
-                if(Character.isDigit(temp))
+                if(Character.isDigit(temp) && (digit == false))
                 {
                     digit = true;
                     continue;
                 }
+            }
+            if( (letter && digit) == true)
+            {
+                return "correct";
             }
         }
         //assert account.matches(regex) == false : "illegal account";
@@ -103,30 +104,29 @@ public class AccountSystem
             boolean digit = false;
             for(int i = 0 ; i < password.length() ; i++ )
             {
-                if( (upperCase && lowerCase && digit) == true)
-                {
-                    return "correct";
-                }
-
                 char temp = password.charAt(i);
 
-                if(Character.isUpperCase(temp))
+                if(Character.isUpperCase(temp) && (upperCase == false))
                 {
                     upperCase = true;
                     continue;
                 }
 
-                if(Character.isLowerCase(temp))
+                if(Character.isLowerCase(temp) && (lowerCase == false))
                 {
                     lowerCase = true;
                     continue;
                 }
 
-                if(Character.isDigit(temp))
+                if(Character.isDigit(temp) && (digit == false))
                 {
                     digit = true;
                     continue;
                 }
+            }
+            if( (upperCase && lowerCase && digit) == true)
+            {
+                return "correct";
             }
         }
         //assert password.matches(regex) == false : "illegal password";
