@@ -7,23 +7,28 @@ import java.util.HashMap;
  */
 public class AccountSystem
 {
-    private HashMap<String, String> database = new HashMap<String, String>();
-    /*
+    public HashMap<String, String> database = new HashMap<String, String>();
+
     public String signUp(String account, String password)
     {
-
         if( database.containsKey(account) )
             return "此帳號已存在";
-        if(checkAccount(account) != "collect" )
+        if(checkAccount(account) != "correct" )
             return checkAccount(account);
-        if(checkPassword(password) != "collect" )
+        if(checkPassword(password) != "correct" )
             return checkPassword(password);
+
+        assert database.containsKey(account) == false: "account exists";
+        assert checkAccount(account) == "correct" : "illegal account";
+        assert checkPassword(password) == "correct" : "illegal password";
 
         database.put(account, password);
 
-        return "註冊完成";
+        assert database.containsKey(account) == true : "signup fail";
+
+        return "註冊成功";
     }
-    */
+
 
     public String checkAccount(String account)
     {
@@ -59,7 +64,7 @@ public class AccountSystem
                 }
             }
         }
-        assert account.matches(regex) == false : "illegal account";
+        //assert account.matches(regex) == false : "illegal account";
         return "帳號需包含英文字母及數字，不能使用符號";
     }
 
@@ -104,7 +109,7 @@ public class AccountSystem
                 }
             }
         }
-        assert password.matches(regex) == false : "illegal password";
+        //assert password.matches(regex) == false : "illegal password";
         return "密碼需包含大小寫英文字母及數字，不能使用符號";
     }
 }

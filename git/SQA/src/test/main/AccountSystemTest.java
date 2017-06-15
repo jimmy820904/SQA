@@ -10,7 +10,7 @@ import org.junit.After;
 public class AccountSystemTest
 {
     @Test
-    public void checkAccountTest() throws Exception
+    public void checkAccountTest()
     {
         AccountSystem a = new AccountSystem();
         String s1 = "1111";
@@ -29,7 +29,7 @@ public class AccountSystemTest
     }
 
     @Test
-    public void checkPasswordTest() throws Exception
+    public void checkPasswordTest()
     {
         AccountSystem a = new AccountSystem();
         String s1 = "1111";
@@ -47,5 +47,17 @@ public class AccountSystemTest
         assertEquals("密碼需包含大小寫英文字母及數字，不能使用符號",a.checkPassword(s5));
         assertEquals("密碼需包含大小寫英文字母及數字，不能使用符號",a.checkPassword(s6));
         assertEquals("correct",a.checkPassword(s7));
+    }
+
+    @Test
+    public void SignUpTest()
+    {
+        AccountSystem a = new AccountSystem();
+        assertEquals(true, a.database.isEmpty());
+        assertEquals("註冊成功", a.signUp("jimmy666","Jimmy666"));
+        assertEquals("此帳號已存在", a.signUp("jimmy666","Jimmy678"));
+        assertEquals(a.checkAccount("jimmyyyy"), a.signUp("jimmyyyy","Jimmy678"));
+        assertEquals(a.checkPassword("jimmyyyy"), a.signUp("jimmy777","jimmyyyy"));
+        assertEquals(1, a.database.size());
     }
 } 

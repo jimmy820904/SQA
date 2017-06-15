@@ -9,6 +9,13 @@ public class Test
     {
         String s = "111111";
         AccountSystem a = new AccountSystem();
-        System.out.print(a.checkPassword(s));
+        String state;
+
+        System.out.println(a.signUp("chenci111","AAAaaaaa11"));
+        System.out.println(a.signUp("chenci222","BBBbbbbb22"));
+        System.out.println(a.signUp("chenci333","CCCccccc33"));
+        System.out.println(a.database.replace("chenci111","AAaaaaa11","RRRrrrrr55"));
+        System.out.println(a.database.get("chenci111"));
+
     }
 }
