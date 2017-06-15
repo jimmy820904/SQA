@@ -7,9 +7,8 @@ public class Test
 {
     public static void main(String[] args)
     {
-        String s = "_____1a___";
+        String s = "111111";
         AccountSystem a = new AccountSystem();
-        System.out.print(s.length());
-        System.out.print(a.checkAccount(s));
+        System.out.print(a.checkPassword(s));
     }
 }
