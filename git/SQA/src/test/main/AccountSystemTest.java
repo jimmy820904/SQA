@@ -56,8 +56,18 @@ public class AccountSystemTest
         assertEquals(true, a.database.isEmpty());
         assertEquals("註冊成功", a.signUp("jimmy666","Jimmy666"));
         assertEquals("此帳號已存在", a.signUp("jimmy666","Jimmy678"));
-        assertEquals(a.checkAccount("jimmyyyy"), a.signUp("jimmyyyy","Jimmy678"));
-        assertEquals(a.checkPassword("jimmyyyy"), a.signUp("jimmy777","jimmyyyy"));
+        assertEquals(a.checkAccount("yyyyyyyy"), a.signUp("yyyyyyyy","Jimmy678"));
+        assertEquals(a.checkPassword("yyyyyyyy"), a.signUp("jimmy777","yyyyyyyy"));
         assertEquals(1, a.database.size());
+    }
+
+    @Test
+    public void SignInTest()
+    {
+        AccountSystem a = new AccountSystem();
+        a.signUp("jimmy666","Jimmy666");
+        assertEquals("登入成功", a.signIn("jimmy666","Jimmy666"));
+        assertEquals("密碼錯誤", a.signIn("jimmy666","123"));
+        assertEquals("帳號錯誤", a.signIn("123456789","123"));
     }
 } 

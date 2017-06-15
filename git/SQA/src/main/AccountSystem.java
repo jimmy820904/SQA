@@ -29,6 +29,19 @@ public class AccountSystem
         return "註冊成功";
     }
 
+    public String signIn(String account, String password)
+    {
+        if(database.containsKey(account))
+        {
+            if( database.get(account).equals(password) )
+            {
+                return "登入成功";
+            }
+            else
+                return "密碼錯誤";
+        }
+        return "帳號錯誤";
+    }
 
     public String checkAccount(String account)
     {
