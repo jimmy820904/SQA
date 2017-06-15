@@ -125,4 +125,14 @@ public class AccountSystem
         //assert password.matches(regex) == false : "illegal password";
         return "密碼需包含大小寫英文字母及數字，不能使用符號";
     }
+
+    public String forgetPassword(String account)
+    {
+        if(database.containsKey(account))
+        {
+            String password = database.get(account);
+            return "您的密碼第一個字為" + password.charAt(0) + "，最後一個字為" + password.charAt(password.length()-1);
+        }
+        return "此帳號不存在";
+    }
 }

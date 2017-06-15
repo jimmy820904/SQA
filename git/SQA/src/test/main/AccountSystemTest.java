@@ -70,4 +70,13 @@ public class AccountSystemTest
         assertEquals("密碼錯誤", a.signIn("jimmy666","123"));
         assertEquals("帳號錯誤", a.signIn("123456789","123"));
     }
+
+    @Test
+    public void forgetPasswordTest()
+    {
+        AccountSystem a = new AccountSystem();
+        a.signUp("jimmy666","ABCDEf123");
+        assertEquals("您的密碼第一個字為A，最後一個字為3", a.forgetPassword("jimmy666"));
+        assertEquals("此帳號不存在", a.forgetPassword("jimmy6789"));
+    }
 } 
