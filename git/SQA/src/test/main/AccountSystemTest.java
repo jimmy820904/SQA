@@ -67,6 +67,7 @@ public class AccountSystemTest
         AccountSystem a = new AccountSystem();
         a.signUp("jimmy666","Jimmy666");
         assertEquals("登入成功", a.signIn("jimmy666","Jimmy666"));
+        assertEquals("jimmy666", a.currentUser);
         assertEquals("密碼錯誤", a.signIn("jimmy666","123"));
         assertEquals("帳號錯誤", a.signIn("123456789","123"));
     }
@@ -89,5 +90,16 @@ public class AccountSystemTest
         assertEquals(a.checkPassword("123456789"), a.changePassword("jimmy666","ABCDEf123","123456789"));
         assertEquals("修改成功", a.changePassword("jimmy666", "ABCDEf123","Qazwsx123"));
         assertEquals("Qazwsx123", a.database.get("jimmy666"));
+    }
+
+    @Test
+    public void logOutTest()
+    {
+        AccountSystem a = new AccountSystem();
+        a.signUp("jimmy666","ABCDEf123");
+        a.signIn("jimmy666","ABCDEf123");
+        assertEquals("jimmy666", a.currentUser);
+        a.logOut();
+        assertEquals("", a.currentUser);
     }
 } 

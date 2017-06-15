@@ -36,12 +36,18 @@ public class AccountSystem
         {
             if( database.get(account).equals(password) )
             {
+                currentUser = account;
                 return "登入成功";
             }
             else
                 return "密碼錯誤";
         }
         return "帳號錯誤";
+    }
+
+    public void logOut()
+    {
+        currentUser = "";
     }
 
     public String checkAccount(String account)
