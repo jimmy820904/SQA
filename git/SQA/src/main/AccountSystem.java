@@ -7,9 +7,20 @@ import java.util.HashMap;
  */
 public class AccountSystem
 {
+    public static AccountSystem system = null;
     public HashMap<String, String> database = new HashMap<String, String>();
     public String currentUser;
     public boolean login = false;
+
+    public static AccountSystem getInstance()
+    {
+        if( system == null )
+        {
+            system = new AccountSystem();
+        }
+        return system;
+    }
+
     public String signUp(String account, String password)
     {
         if( database.containsKey(account) )

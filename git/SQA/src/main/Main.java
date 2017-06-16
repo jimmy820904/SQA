@@ -7,6 +7,10 @@ public class Main
 {
     public static void main(String[] args)
     {
+
+        LoginPage l = new LoginPage();
+        l.setVisible(true);
+        /*
         AccountSystem system = new AccountSystem();
         Scanner scanner = new Scanner(System.in);
         int choice;
@@ -87,6 +91,6 @@ public class Main
                 }
             }
         }
-
+        */
     }
 }
