@@ -5,7 +5,6 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 
-
 public class AccountSystemTest
 {
     @Test
@@ -101,4 +100,20 @@ public class AccountSystemTest
         a.logOut();
         assertEquals("", a.currentUser);
     }
+
+    @Test
+    public void getInstanceTest()
+    {
+        AccountSystem a = AccountSystem.getInstance();
+        a.signUp("jimmy666","ABCDEf123");
+
+        AccountSystem b = AccountSystem.getInstance();
+        assertTrue(a==b);
+
+        b.signUp("1qaz2wsx","1qaz2wsX");
+        assertTrue(a==b);
+
+        AccountSystem c = new AccountSystem();
+        assertFalse(a==c);
+     }
 } 
